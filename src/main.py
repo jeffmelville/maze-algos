@@ -1,6 +1,6 @@
 import mazelib
 
 if __name__ == "__main__":
-    maze = maze.Maze()
+    maze = mazelib.Maze("../mazes/maze1.txt")
 
-    maze2 = maze.Maze()
+    print maze
