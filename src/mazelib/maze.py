@@ -23,6 +23,19 @@ class Maze:
             self._maze.append(this_row)
             rownum = rownum + 1
 
+    def get_size(self):
+        width = 0
+        height = len(self._maze)
+        if height: width = len(self._maze[0])
+        return (width, height)
+
+    def get_height(self):
+        return self.get_size()[1]
+
+    def get_width(self):
+        return self.get_size()[0]
+
+
     def __call__(self, row, col):
         return self._maze[row][col]
         
