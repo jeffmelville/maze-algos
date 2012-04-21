@@ -1,12 +1,9 @@
 #!/usr/bin/python
 
 import mazelib
-import pygame
 
 def main():
-    maze = mazelib.GraphicMaze("../mazes/maze1.txt")
-    pygame.init()
-    pygame.display.set_mode((1344,320))
+    maze = mazelib.GraphicMaze("../mazes/maze2.txt")
     print maze
 
     bug = mazelib.Bug(maze)
@@ -15,9 +12,11 @@ def main():
     bug.move_to(8,2); print bug
 
     print ("Start: (" + str(maze.start_row) + "," +
-        str(maze.start_col) + ") : " +
-        str(maze(maze.start_row, maze.start_col)))
-    #pygame.display.set_mode((maze.get_width(), maze.get_height()))
+           str(maze.start_col) + ") : " +
+           str(maze(maze.start_row, maze.start_col)))
+    
+
     mazelib.TestGame(maze).main()
+
 
 if __name__ == "__main__": main()

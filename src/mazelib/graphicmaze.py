@@ -7,13 +7,14 @@ TILE_WIDTH, TILE_HEIGHT = 32,32
 
 class GraphicMaze(Maze):
 
+    def get_screen_size(self):
+        return (self.get_width() * TILE_WIDTH, self.get_height() * TILE_HEIGHT)
 
     def render(self):
         """Draw the maze on a surface and return it"""
-        width = self.get_width() * TILE_WIDTH
-        height = self.get_height() * TILE_HEIGHT
-        print "%d,%d" % (width, height)
-        image = pygame.Surface((width, height))
+        size = self.get_screen_size()
+        print "%d,%d" % size
+        image = pygame.Surface(size)
 
         for map_y in range(self.get_height()):
             for map_x in range(self.get_width()):
@@ -37,20 +38,22 @@ class GraphicMaze(Maze):
 class TestGame:
 
     def __init__ (self, maze):
-        self.screen = pygame.display.get_surface()
+        self.screen = pygame.display.set_mode(maze.get_screen_size())
         self.maze = maze
         self.maze_image = self.maze.render()
 
     def main(self):
+            
+
         self.screen.blit(self.maze_image, (0,0))
         pygame.display.flip()
         clock = pygame.time.Clock()
         self.game_over = False
         while not self.game_over:
-            clock.tick(15)
-            for event in pygame.event.get(): 
+            for event in pygame.event.get():
+                print event    
                 if event.type == pg.QUIT:
                     self.game_over = True
 
-
+        pygame.display.quit()
 
