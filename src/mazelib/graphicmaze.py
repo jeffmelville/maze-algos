@@ -51,7 +51,6 @@ class TestGame:
         self.game_over = False
         while not self.game_over:
             for event in pygame.event.get():
-                print event    
                 if event.type == pg.QUIT:
                     self.game_over = True
 
