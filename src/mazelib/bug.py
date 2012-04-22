@@ -1,6 +1,11 @@
 from maze import Maze
 
 class Bug:
+    NORTH = 1
+    EAST  = 2
+    SOUTH = 3
+    WEST  = 4
+
     """
     Acts as an agent solving the maze. This base class serves as a place to
     put functions that might be useful for many different kinds of maze solvers.
@@ -9,6 +14,7 @@ class Bug:
         self._maze = maze
         self._row = maze.start_row
         self._col = maze.start_col
+        self._facing = NORTH
     
     def is_valid_path(self, to_row, to_col):
         """
@@ -30,12 +36,36 @@ class Bug:
         moving clockwise
         """
         moves = []
-        self._add_if_valid(self._row - 1, self._col)
-        self._add_if_valid(self._row, self._col + 1)
-        self._add_if_valid(self._row + 1, self._col)
-        self._add_if_valid(self._row, self._col - 1)
+        self._add_if_valid(*self.get_north())
+        self._add_if_valid(*self.get_east())
+        self._add_if_valid(*self.get_south())
+        self._add_if_valid(*self.get_west())
         
         return moves
+
+    def get_north(self):
+        """
+        Return the position north of the current spot
+        """
+        return ((self._row - 1, self._col))
+
+    def get_east(self):
+        """
+        Return the position east of the current spot
+        """
+        return ((self._row, self._col + 1))
+
+    def get_south(self):
+        """
+        Return the position south of the current spot
+        """
+        return ((self._row + 1, self._col))
+
+    def get_west(self):
+        """
+        Return the position west of the current spot
+        """
+        return ((self._row, self._col - 1))
 
     def is_one_away(self, to_row, to_col):
         """
@@ -50,10 +80,25 @@ class Bug:
         assert self.is_valid_path(to_row, to_col), "Tried to move into a wall!"
         assert self.is_one_away(to_row, to_col), "That spot is too far away!"
 
+        self._update_facing(to_row, to_col)
         self._row = to_row
         self._col = to_col
 
+    def _update_facing(to_row, to_col):
+        if (to_row, to_col) == get_north():
+            self._facing = NORTH
+        elif (to_row, to_col) == get_east():
+            self._facing = EAST
+        elif (to_row, to_col) == get_south():
+            self._facing = SOUTH
+        elif (to_row, to_col) == get_west():
+            self._facing = WEST
+
     def _add_if_valid(moves, to_row, to_col):
+        """
+        Add the move specified by to_row and to_col to the moves list if
+        it is a valid place to go.
+        """
         if(is_valid_path(to_row, to_col)):
             moves.append((to_row, to_col))
 
