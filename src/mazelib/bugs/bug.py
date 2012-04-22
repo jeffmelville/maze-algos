@@ -51,7 +51,27 @@ class Bug(object):
         return moves
 
     def get_location(self):
+        """
+        Get the current location of the bug as a tuple (row, column)
+        """
         return (self._row, self._col)
+
+    def get_dir(self, direction):
+        """
+        Get the move to a direction
+        """
+        assert direction >= Bug.NORTH, "Bad direction value passed!"
+        assert direction <= Bug.WEST, "Bad direction value passed!"
+
+        if direction == Bug.NORTH:
+            return self.get_north()
+        elif direction == Bug.EAST:
+            return self.get_east()
+        elif direction == Bug.SOUTH:
+            return self.get_south()
+        elif direction == Bug.WEST:
+            return self.get_west()
+
 
     def get_north(self):
         """
