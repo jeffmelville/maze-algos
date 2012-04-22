@@ -15,6 +15,13 @@ class Bug(object):
         self._row = maze.start_row
         self._col = maze.start_col
         self._facing = Bug.EAST
+
+    def take_step(self):
+        """
+        Take a step in solving the maze. Subclasses should implement this
+        function to solve the maze one step at a time
+        """
+        pass
     
     def is_valid_path(self, to_row, to_col):
         """
@@ -88,6 +95,9 @@ class Bug(object):
         self._col = to_col
         
     def get_facing(self):
+        """
+        Get the current facing of the bug
+        """
         return self._facing
 
     def _update_facing(self, to_row, to_col):

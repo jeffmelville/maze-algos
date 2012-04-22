@@ -1,12 +1,13 @@
 #!/usr/bin/python
 
 import mazelib
+from mazerunner import MazeRunner
 
 def main():
     maze = mazelib.GraphicMaze("../mazes/maze2.txt")
     print maze
 
-    bug = mazelib.Bug(maze)
+    bug = mazelib.GraphicBug(maze)
     bug.move_to(7,1); print bug
     bug.move_to(8,1); print bug
     bug.move_to(8,2); print bug
@@ -16,7 +17,7 @@ def main():
            str(maze(maze.start_row, maze.start_col)))
     
 
-    mazelib.TestGame(maze).main()
+    MazeRunner(maze, bug).main()
 
 
 if __name__ == "__main__": main()

@@ -31,7 +31,6 @@ class GraphicMaze(Maze):
                 elif cell.is_wall():
                     color=(0,0,0)
                 image.fill(color, rect=rect)
-                #image.blit(cell_tile, map_x*TILE_WIDTH, map_y*TILE_HEIGHT)
 
         return image
 

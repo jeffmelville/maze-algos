@@ -33,7 +33,6 @@ class GraphicBug(Bug):
         pygame.draw.polygon(image, blue_color, points)
         
         rotate_angle = self._rotate_angles[self.get_facing()]
-        print self.get_facing()
 
         image = pygame.transform.rotate(image, rotate_angle)
 
