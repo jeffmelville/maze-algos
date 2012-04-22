@@ -1,6 +1,6 @@
 from maze import Maze
 
-class Bug:
+class Bug(object):
     NORTH = 1
     EAST  = 2
     SOUTH = 3
@@ -14,7 +14,7 @@ class Bug:
         self._maze = maze
         self._row = maze.start_row
         self._col = maze.start_col
-        self._facing = NORTH
+        self._facing = Bug.EAST
     
     def is_valid_path(self, to_row, to_col):
         """
@@ -42,6 +42,9 @@ class Bug:
         self._add_if_valid(*self.get_west())
         
         return moves
+
+    def get_location(self):
+        return (self._row, self._col)
 
     def get_north(self):
         """
@@ -83,16 +86,19 @@ class Bug:
         self._update_facing(to_row, to_col)
         self._row = to_row
         self._col = to_col
+        
+    def get_facing(self):
+        return self._facing
 
-    def _update_facing(to_row, to_col):
-        if (to_row, to_col) == get_north():
-            self._facing = NORTH
-        elif (to_row, to_col) == get_east():
-            self._facing = EAST
-        elif (to_row, to_col) == get_south():
-            self._facing = SOUTH
-        elif (to_row, to_col) == get_west():
-            self._facing = WEST
+    def _update_facing(self, to_row, to_col):
+        if (to_row, to_col) == self.get_north():
+            self._facing = Bug.NORTH
+        elif (to_row, to_col) == self.get_east():
+            self._facing = Bug.EAST
+        elif (to_row, to_col) == self.get_south():
+            self._facing = Bug.SOUTH
+        elif (to_row, to_col) == self.get_west():
+            self._facing = Bug.WEST
 
     def _add_if_valid(moves, to_row, to_col):
         """
