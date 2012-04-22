@@ -7,7 +7,7 @@ class RightWallFollower(GraphicBug):
         Bug.NORTH : [Bug.EAST, Bug.NORTH, Bug.WEST, Bug.SOUTH],
         Bug.EAST  : [Bug.SOUTH, Bug.EAST, Bug.NORTH, Bug.WEST],
         Bug.SOUTH : [Bug.WEST, Bug.SOUTH, Bug.EAST, Bug.NORTH],
-        Bug.WEST  : [Bug.NORTH, Bug.WEST, Bug.SOUTH, Bug.WEST],
+        Bug.WEST  : [Bug.NORTH, Bug.WEST, Bug.SOUTH, Bug.EAST],
     }
 
     def __init__(self, maze):
