@@ -44,9 +44,11 @@ class MazeRunner:
         Render the current state of the maze
         """
         self.screen.blit(self.maze_image, (0,0))
+        overlay = self.bug.render_overlay()
         bug_image = self.bug.render()
         bug_loc = self.bug.get_render_location()
 
+        self.screen.blit(overlay, (0,0))
         self.screen.blit(bug_image, bug_loc)
         pygame.display.flip()
 

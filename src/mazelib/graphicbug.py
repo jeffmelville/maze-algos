@@ -38,6 +38,13 @@ class GraphicBug(Bug):
 
         return image
 
+    def render_overlay(self):
+        """
+        Implementing classes should override this method to render any
+        overlays useful for showing how to solve the maze
+        """
+        pass
+
     def get_render_location(self):
         """
         Get the screen location the bug should be blitted to
