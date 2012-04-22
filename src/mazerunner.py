@@ -48,7 +48,9 @@ class MazeRunner:
         bug_image = self.bug.render()
         bug_loc = self.bug.get_render_location()
 
-        self.screen.blit(overlay, (0,0))
+        if overlay is not None:
+            self.screen.blit(overlay, (0,0))
+
         self.screen.blit(bug_image, bug_loc)
         pygame.display.flip()
 

@@ -2,9 +2,10 @@
 import pygame
 import pygame.locals as pg 
 from maze import Maze
-from graphicbug import GraphicBug
 
-TILE_WIDTH, TILE_HEIGHT = 32,32 
+from bugs.graphicbug import GraphicBug
+
+TILE_WIDTH, TILE_HEIGHT = 32,32
 
 class GraphicMaze(Maze):
 

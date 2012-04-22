@@ -43,7 +43,7 @@ class GraphicBug(Bug):
         Implementing classes should override this method to render any
         overlays useful for showing how to solve the maze
         """
-        pass
+        return None
 
     def get_render_location(self):
         """

@@ -7,10 +7,9 @@ def main():
     maze = mazelib.GraphicMaze("../mazes/maze2.txt")
     print maze
 
-    bug = mazelib.GraphicBug(maze)
+    bug = mazelib.bugs.GraphicBug(maze)
     bug.move_to(7,1); print bug
     bug.move_to(8,1); print bug
-    bug.move_to(8,2); print bug
 
     print ("Start: (" + str(maze.start_row) + "," +
            str(maze.start_col) + ") : " +
