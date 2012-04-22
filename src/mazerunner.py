@@ -6,6 +6,8 @@ import mazelib
 class MazeRunner:
 
     SOLVE_STEP = pygame.USEREVENT + 1
+    STEP_PERIOD = 100 #100 ms per solve step
+    FRAMERATE = 40 #40 fps max
 
     def __init__ (self, maze, bug):
         self.screen = pygame.display.set_mode(maze.get_screen_size())
@@ -19,10 +21,11 @@ class MazeRunner:
         Run the solving animation
         """
         #solve a step every half-second
-        pygame.time.set_timer(MazeRunner.SOLVE_STEP, 100)
-
+        pygame.time.set_timer(MazeRunner.SOLVE_STEP, MazeRunner.STEP_PERIOD)
+        clock = pygame.time.Clock()
         self.game_over = False
         while not self.game_over:
+            clock.tick(MazeRunner.FRAMERATE)
             self._process_events()
             self._render_maze()
             
