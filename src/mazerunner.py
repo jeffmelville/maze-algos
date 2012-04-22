@@ -19,7 +19,7 @@ class MazeRunner:
         Run the solving animation
         """
         #solve a step every half-second
-        pygame.time.set_timer(MazeRunner.SOLVE_STEP, 250)
+        pygame.time.set_timer(MazeRunner.SOLVE_STEP, 100)
 
         self.game_over = False
         while not self.game_over:
