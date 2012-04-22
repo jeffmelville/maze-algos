@@ -34,28 +34,3 @@ class GraphicMaze(Maze):
 
         return image
 
-
-class TestGame:
-
-    def __init__ (self, maze):
-        self.screen = pygame.display.set_mode(maze.get_screen_size())
-        self.maze = maze
-        self.bug = GraphicBug(maze)
-        self.maze_image = self.maze.render()
-        self.bug_image = self.bug.render()
-
-    def main(self):
-            
-
-        self.screen.blit(self.maze_image, (0,0))
-        self.screen.blit(self.bug_image, self.bug.get_render_location())
-        pygame.display.flip()
-        clock = pygame.time.Clock()
-        self.game_over = False
-        while not self.game_over:
-            for event in pygame.event.get():
-                if event.type == pg.QUIT:
-                    self.game_over = True
-
-        pygame.display.quit()
-
