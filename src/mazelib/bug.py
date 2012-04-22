@@ -14,6 +14,14 @@ class Bug:
         """
         Check whether a spot to move to is a valid place for a bug to visit.
         """
+        if to_row < 0 or to_col < 0:
+            return False
+
+        (width, height) = self._maze.get_size()
+
+        if to_row >= height or to_col >= width:
+            return False
+
         return not self._maze(to_row, to_col).is_wall()
 
     def get_valid_moves(self):
@@ -21,7 +29,13 @@ class Bug:
         Return a list of tuples to valid moves, always starting with north and
         moving clockwise
         """
-        pass
+        moves = []
+        self._add_if_valid(self._row - 1, self._col)
+        self._add_if_valid(self._row, self._col + 1)
+        self._add_if_valid(self._row + 1, self._col)
+        self._add_if_valid(self._row, self._col - 1)
+        
+        return moves
 
     def is_one_away(self, to_row, to_col):
         """
@@ -38,6 +52,12 @@ class Bug:
 
         self._row = to_row
         self._col = to_col
+
+    def _add_if_valid(moves, to_row, to_col):
+        if(is_valid_path(to_row, to_col)):
+            moves.append((to_row, to_col))
+
+        return moves
 
     def __str__(self):
         """
