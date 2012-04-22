@@ -2,6 +2,7 @@
 import pygame
 import pygame.locals as pg 
 from maze import Maze
+from graphicbug import GraphicBug
 
 TILE_WIDTH, TILE_HEIGHT = 32,32 
 
@@ -40,12 +41,15 @@ class TestGame:
     def __init__ (self, maze):
         self.screen = pygame.display.set_mode(maze.get_screen_size())
         self.maze = maze
+        self.bug = GraphicBug(maze)
         self.maze_image = self.maze.render()
+        self.bug_image = self.bug.render()
 
     def main(self):
             
 
         self.screen.blit(self.maze_image, (0,0))
+        self.screen.blit(self.bug_image, self.bug.get_render_location())
         pygame.display.flip()
         clock = pygame.time.Clock()
         self.game_over = False
