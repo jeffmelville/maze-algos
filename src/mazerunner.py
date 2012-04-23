@@ -29,8 +29,6 @@ class MazeRunner:
             self._render_maze()
             
 
-        pygame.display.quit()
-
     def _process_events(self):
         """
         Process events from the pygame event queue

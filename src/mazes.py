@@ -32,6 +32,9 @@ def main():
 
     MazeRunner(maze, bug).main()
 
+    pygame.display.quit()
+    pygame.quit()
+
 def get_bug(name, maze):
     return BUG_IMPLS[name](maze)
 
