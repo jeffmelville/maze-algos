@@ -2,8 +2,7 @@ import pygame
 import pygame.locals as pg
 
 from bug import Bug
-
-TILE_WIDTH, TILE_HEIGHT = 32, 32
+from ..graphicmaze import GraphicMaze
 
 class GraphicBug(Bug):
 
@@ -20,14 +19,14 @@ class GraphicBug(Bug):
         """
         Create a tile-sized triangle with the correct facing for a bug
         """
-        image = pygame.Surface((TILE_WIDTH, TILE_HEIGHT))
+        image = pygame.Surface((GraphicMaze.TILE_WIDTH, GraphicMaze.TILE_HEIGHT))
         transparent_color = (255, 0, 255)
         image.set_colorkey(transparent_color)
         image.fill(transparent_color)
 
-        points = [(TILE_WIDTH / 2, 0), 
-                  (0, TILE_HEIGHT), 
-                  (TILE_WIDTH, TILE_HEIGHT)]
+        points = [(GraphicMaze.TILE_WIDTH / 2, 0), 
+                  (0, GraphicMaze.TILE_HEIGHT), 
+                  (GraphicMaze.TILE_WIDTH, GraphicMaze.TILE_HEIGHT)]
 
         blue_color = (0, 0, 255)
         pygame.draw.polygon(image, blue_color, points)
@@ -50,4 +49,4 @@ class GraphicBug(Bug):
         Get the screen location the bug should be blitted to
         """
         (row, col) = self.get_location()
-        return (TILE_HEIGHT * col, TILE_WIDTH * row)
+        return (GraphicMaze.TILE_HEIGHT * col, GraphicMaze.TILE_WIDTH * row)

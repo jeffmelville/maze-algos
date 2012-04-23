@@ -15,7 +15,6 @@ class MazeRunner:
         self.bug = bug
         self.maze_image = self.maze.render()
 
-
     def main(self):
         """
         Run the solving animation

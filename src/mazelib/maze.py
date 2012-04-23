@@ -17,6 +17,10 @@ class Maze:
                     self.start_col = colnum
                     self.start_row = rownum
 
+                if(maze_cell.is_end()):
+                    self.end_col = colnum
+                    self.end_row = rownum
+
                 this_row.append(maze_cell)
                 colnum = colnum + 1
                 

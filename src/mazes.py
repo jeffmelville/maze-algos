@@ -2,11 +2,14 @@
 import argparse
 import sys
 
+import pygame
+
 import mazelib
 from mazerunner import MazeRunner
 
 BUG_IMPLS = {
-    "RightWallFollower" : mazelib.bugs.RightWallFollower
+    "RightWallFollower" : mazelib.bugs.RightWallFollower,
+    "Wavefront"         : mazelib.bugs.Wavefront
 }
 
 def main():
@@ -22,14 +25,10 @@ def main():
 
     args = argparser.parse_args(sys.argv[1:])
 
+    pygame.init()
+
     maze = mazelib.GraphicMaze(args.maze)
     bug = get_bug(args.bug, maze)
-    print maze
-
-    print ("Start: (" + str(maze.start_row) + "," +
-           str(maze.start_col) + ") : " +
-           str(maze(maze.start_row, maze.start_col)))
-    
 
     MazeRunner(maze, bug).main()
 

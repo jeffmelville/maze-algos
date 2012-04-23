@@ -42,12 +42,18 @@ class Bug(object):
         Return a list of tuples to valid moves, always starting with north and
         moving clockwise
         """
+        return self.get_valid_moves_from(self._row, self._col)
+
+    def get_valid_moves_from(self, row, col):
+        """
+        Return a list of tuples to valid moves from (row, col), always 
+        starting with north and moving clockwise
+        """
         moves = []
-        self._add_if_valid(*self.get_north())
-        self._add_if_valid(*self.get_east())
-        self._add_if_valid(*self.get_south())
-        self._add_if_valid(*self.get_west())
-        
+        self._add_if_valid(moves, *self.get_north_from(row, col))
+        self._add_if_valid(moves, *self.get_east_from(row, col))
+        self._add_if_valid(moves, *self.get_south_from(row, col))
+        self._add_if_valid(moves, *self.get_west_from(row, col))
         return moves
 
     def get_location(self):
@@ -60,42 +66,71 @@ class Bug(object):
         """
         Get the move to a direction
         """
-        assert direction >= Bug.NORTH, "Bad direction value passed!"
-        assert direction <= Bug.WEST, "Bad direction value passed!"
+        return self.get_dir_from(direction, self._row, self._col)
 
+
+    def get_dir_from(self, direction, row, col):
+        """
+        Get the move to a direction from any place
+        """
         if direction == Bug.NORTH:
-            return self.get_north()
+            return self.get_north_from(row, col)
         elif direction == Bug.EAST:
-            return self.get_east()
+            return self.get_east_from(row, col)
         elif direction == Bug.SOUTH:
-            return self.get_south()
+            return self.get_south_from(row, col)
         elif direction == Bug.WEST:
-            return self.get_west()
+            return self.get_west_from(row, col)
 
+        assert False, "Bad direction value passed!"
+
+    def get_north_from(self, row, col):
+        """
+        Get the position north of (row, col)
+        """
+        return ((row - 1, col))
 
     def get_north(self):
         """
         Return the position north of the current spot
         """
-        return ((self._row - 1, self._col))
+        return self.get_north_from(self._row, self._col)
+
+    def get_east_from(self, row, col):
+        """
+        Return the position east of (row, col)
+        """
+        return ((row, col + 1))
 
     def get_east(self):
         """
         Return the position east of the current spot
         """
-        return ((self._row, self._col + 1))
+        return self.get_east_from(self._row, self._col)
+
+    def get_south_from(self, row, col):
+        """
+        Return the position south of (row, col)
+        """
+        return ((row + 1, col))
 
     def get_south(self):
         """
         Return the position south of the current spot
         """
-        return ((self._row + 1, self._col))
+        return self.get_south_from(self._row, self._col)
+
+    def get_west_from(self, row, col):
+        """
+        Return the position west of (row, col)
+        """
+        return ((row, col - 1))
 
     def get_west(self):
         """
         Return the position west of the current spot
         """
-        return ((self._row, self._col - 1))
+        return self.get_west_from(self._row, self._col)
 
     def is_one_away(self, to_row, to_col):
         """
@@ -130,12 +165,12 @@ class Bug(object):
         elif (to_row, to_col) == self.get_west():
             self._facing = Bug.WEST
 
-    def _add_if_valid(moves, to_row, to_col):
+    def _add_if_valid(self, moves, to_row, to_col):
         """
         Add the move specified by to_row and to_col to the moves list if
         it is a valid place to go.
         """
-        if(is_valid_path(to_row, to_col)):
+        if(self.is_valid_path(to_row, to_col)):
             moves.append((to_row, to_col))
 
         return moves
