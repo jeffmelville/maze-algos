@@ -5,8 +5,8 @@ from maze import Maze
 
 class GraphicMaze(Maze):
 
-    TILE_WIDTH = 32
-    TILE_HEIGHT = 32
+    TILE_WIDTH = 40
+    TILE_HEIGHT = 40
 
     def get_screen_size(self):
         return (self.get_width() * GraphicMaze.TILE_WIDTH, 
