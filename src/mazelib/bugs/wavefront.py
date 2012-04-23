@@ -71,7 +71,7 @@ class Wavefront(GraphicBug):
             for map_x in range(len(self._waves[map_y])):
                 if(self._waves[map_y][map_x] != -1):
                     text = self._font.render(str(self._waves[map_y][map_x]),
-                                             True, black)
+                                             False, black)
 
                     (x_off, y_off) = self._center_text(text)
                     position = (map_x*GraphicMaze.TILE_WIDTH  + x_off, 
