@@ -12,7 +12,7 @@ class Wavefront(GraphicBug):
         super(Wavefront, self).__init__(maze)
         (width, height) = maze.get_size()
 
-        self._to_compute = deque() #queue of waves to fill in
+        self._to_compute = [] #queue of waves to fill in
         self._waves = [] #keeps track of the waves
         for row in range(0, height):
             self._waves.append([-1]*width)
@@ -45,14 +45,17 @@ class Wavefront(GraphicBug):
             
 
     def _fill_wavefront(self):
-        (cur_row, cur_col) = self._to_compute.popleft()
-        adjacent_paths = self.get_valid_moves_from(cur_row, cur_col)
+        to_wavefront = list(self._to_compute)
+        self._to_compute = []
+        for cell in to_wavefront:
+            (cur_row, cur_col) = cell
+            adjacent_paths = self.get_valid_moves_from(cur_row, cur_col)
 
-        for (row, col) in adjacent_paths:
-            if(self._waves[row][col] == -1):
-                cur_dist = self._waves[cur_row][cur_col]
-                self._waves[row][col] = cur_dist + 1
-                self._to_compute.append((row, col))
+            for (row, col) in adjacent_paths:
+                if(self._waves[row][col] == -1):
+                    cur_dist = self._waves[cur_row][cur_col]
+                    self._waves[row][col] = cur_dist + 1
+                    self._to_compute.append((row, col))
 
     def render_overlay(self):
         """
