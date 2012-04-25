@@ -15,6 +15,7 @@ class Bug(object):
         self._row = maze.start_row
         self._col = maze.start_col
         self._facing = Bug.EAST
+        self._num_moves = 0
 
     def take_step(self):
         """
@@ -144,10 +145,14 @@ class Bug(object):
         """
         assert self.is_valid_path(to_row, to_col), "Tried to move into a wall!"
         assert self.is_one_away(to_row, to_col), "That spot is too far away!"
+        self._num_moves = self._num_moves + 1
 
         self._update_facing(to_row, to_col)
         self._row = to_row
         self._col = to_col
+
+    def get_num_moves(self):
+        return self._num_moves
         
     def get_facing(self):
         """

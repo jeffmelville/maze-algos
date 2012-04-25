@@ -48,6 +48,13 @@ class MazeRunner:
         bug_image = self.bug.render()
         bug_loc = self.bug.get_render_location()
 
+        #print the number of moves the bug has made
+        if pygame.font:
+            font = pygame.font.Font(None, 36)
+            text = font.render("%d" % self.bug.get_num_moves(), 1, (255,255,255))
+            textpos = text.get_rect(centerx=self.maze.TILE_WIDTH)
+            self.screen.blit(text, textpos)
+
         if overlay is not None:
             self.screen.blit(overlay, (0,0))
 
