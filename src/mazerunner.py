@@ -50,9 +50,9 @@ class MazeRunner:
 
         #print the number of moves the bug has made
         if pygame.font:
-            font = pygame.font.Font(None, 36)
-            text = font.render("%d" % self.bug.get_num_moves(), 1, (255,255,255))
-            textpos = text.get_rect(centerx=self.maze.TILE_WIDTH)
+            font = pygame.font.Font(None, 28)
+            text = font.render("Moves: %d" % self.bug.get_num_moves(), 1, (255,255,255))
+            textpos = text.get_rect(x=self.maze.TILE_WIDTH / 2, centery=self.maze.TILE_HEIGHT / 2)
             self.screen.blit(text, textpos)
 
         if overlay is not None:
